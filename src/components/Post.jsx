@@ -27,6 +27,7 @@ export function Post({author, publishedAt, content}) {
         event.preventDefault();
         setComments([...comments, newCommentText]);
         setNewCommentText('')
+        event.target.setCustomValidity('')
     }
 
     function deleteComment(commentToDelete) {
@@ -34,6 +35,12 @@ export function Post({author, publishedAt, content}) {
         const commentsWithoutDeletedOne = comments.filter(comment => comment !== commentToDelete);
         setComments(commentsWithoutDeletedOne);
     }
+
+    function handleNewCommentInvalid(event){
+        event.target.setCustomValidity("Escreva um comentário antes de publicar");
+    }
+
+    const isNewCommentEmpty = newCommentText.length === 0;
 
     return (
         <article className={styles.post}>
@@ -71,10 +78,14 @@ export function Post({author, publishedAt, content}) {
                     placeholder="Deixe um comentário"
                     value={newCommentText}
                     onChange={handleNewCommentTextChange}
+                    onInvalid={handleNewCommentInvalid}
+                    required
                 />
                 <footer>
                     <button
-                        type="submit">
+                        type="submit"
+                        disabled={isNewCommentEmpty}
+                    >
                         Publicar
                     </button>
                 </footer>
