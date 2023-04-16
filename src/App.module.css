@@ -13,8 +13,5 @@
     .wrapper {
         grid-template-columns: 1fr;
     }
-    
-}
 
-/*Significa que quando o tamanho da tela for menor que 768px, o grid-template-columns vai ser 1fr, ou seja, uma coluna só.*/
-/*Acima nós temos o grid-template-columns: 256px 1fr, ou seja, duas colunas, uma com 256px e outra com 1fr.
+}
